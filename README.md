@@ -1,0 +1,4 @@
+appbase
+=======
+
+node app template

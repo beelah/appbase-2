@@ -11,7 +11,7 @@
   font-size 13px
   vertical-align top
   text-shadow 0 1px 0 rgba(255, 255, 255, 0.5)
-  vicansoGradient #1eb0e9, #0984c6
+  vicansoGradient #334054, #191f28
   border 1px solid rgba(0, 0, 0, .3)
   border-radius 3px
   box-shadow inset 0 1px 1px rgba(255, 255, 255, .4), 0 1px 2px rgba(0, 0, 0, .05)
@@ -24,7 +24,7 @@
     height @width
     border-radius 30px 100px 2px 40px / 2px 40px 30px 100px
     content ''
-    box-shadow inset 1px 0 #0e5895, inset 0 1px #0e5895
+    box-shadow inset 1px 0 #191f28, inset 0 1px #191f28
     mask-image gradient(linear, left top, right bottom, from(#000), color-stop(.33, #000), color-stop(.5, transparent), to(transparent))
   &.btnPrev
     margin-left 7px
@@ -34,8 +34,8 @@
     &:before
       left -5px
       border-left 1.5px solid rgba(255, 255, 255, .25)
-      background-image -webkit-gradient(linear, left bottom, right top, from(#0984c6), to(#1eb0e9))
-      background-image gradient(linear, left bottom, right top, from(#0984c6), to(#1eb0e9))
+      background-image -webkit-gradient(linear, left bottom, right top, from(#191f28), to(#334054))
+      background-image gradient(linear, left bottom, right top, from(#191f28), to(#334054))
       transform rotate(-45deg) skew(-10deg, -10deg)
   &.btnNext
     margin-right 7px
@@ -45,8 +45,8 @@
     &:before
       right -5px
       border-top 1.5px solid rgba(255, 255, 255, .25)
-      background-image -webkit-gradient(linear, left bottom, right top, from(#1eb0e9), to(#0984c6))
-      background-image gradient(linear, left bottom, right top, from(#1eb0e9), to(#0984c6))
+      background-image -webkit-gradient(linear, left bottom, right top, from(#334054), to(#191f28))
+      background-image gradient(linear, left bottom, right top, from(#334054), to(#191f28))
       transform rotate(135deg) skew(-10deg, -10deg)
 
 .arrowBtnBlack
@@ -61,19 +61,6 @@
     &:before
       background-image -webkit-gradient(linear, left bottom, right top, from(#2d2d2d), to(#111))
       background-image gradient(linear, left bottom, right top, from(#2d2d2d), to(#111))
-
-.arrowBtnDarkBlue
-  vicansoGradient #334054, #191f28
-  &:before
-    box-shadow inset 1px 0 #191f28, inset 0 1px #191f28
-  &.btnPrev
-    &:before
-      background-image -webkit-gradient(linear, left bottom, right top, from(#191f28), to(#334054))
-      background-image gradient(linear, left bottom, right top, from(#191f28), to(#334054))
-  &.btnNext
-    &:before
-      background-image -webkit-gradient(linear, left bottom, right top, from(#334054), to(#191f28))
-      background-image gradient(linear, left bottom, right top, from(#334054), to(#191f28))
 
 .arrowRight, .arrowLeft, .arrowTop, .arrowBottom
   height 20

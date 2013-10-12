@@ -13,7 +13,7 @@ if setting.redis
 
 # 初始化mongodb
 if setting.mongodb
-  require('./helpers/mongodb') setting.mongodb
+  require('./helpers/mongodb').init setting.mongodb
 
 sessionParser = null
 

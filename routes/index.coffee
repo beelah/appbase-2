@@ -1,6 +1,5 @@
 config = require '../config'
-appPath = config.getAppPath()
-pageContentHandler = require "#{appPath}/helpers/page_content_handler"
+pageContentHandler = require '../helpers/page_content_handler'
 
 
 routeInfos = [

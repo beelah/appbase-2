@@ -8,9 +8,7 @@ html(lang='zh-CN')
     meta(name='author',content='小墨鱼 vicanso 腻味 tree')
     title= title
     //- link(rel='icon', href='/blog/images/favicon.png', type='image/x-icon')
-    script.
-        window.TIME_LINE={logs:{},startTimes:{},time:function(a){this.startTimes[a]=new Date().getTime();return this},timeEnd:function(a,c){var d,b;b=this.startTimes;d=b[a]||b[c];if(d){this.logs[a]=new Date().getTime()-d}return this},getLogs:function(){return this.logs}};
-        window.TIME_LINE.time('html');
+    include ../statics/inline.js
     //CSS_FILES_CONTAINER
     //if lt IE 9
       script(src='/javascripts/utils/html5shiv.min.js', type='text/javascript')

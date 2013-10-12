@@ -38,21 +38,18 @@ if isProductionMode
     dst : ['.js', '.css']
 
 config = 
-  getAppPath : ->
-    __dirname
-  sessionParser : ->
-    sessionParser
-  getStaticsHost : ->
-    if @isProductionMode
-      null
+  init : (app) ->
+    if isProductionMode
+      app.locals.LOCAL =
+        host : 's.jennyou.com'
     else
-      null
-  isProductionMode : isProductionMode
+      app.locals.LOCAL = {}
 
   host : host
   express : 
     set : 
       'view engine' : 'jade'
+      'trust proxy' : true
       views : "#{__dirname}/views"
   static : 
     path : "#{__dirname}/statics"
@@ -63,6 +60,8 @@ config =
     version : staticVersion
     hosts : staticHosts
     convertExts : convertExts
+    headers : 
+      'v-ttl' : '1800s'
     mergeList : [
       ['/javascripts/utils/underscore.js', '/javascripts/utils/async.js']
     ]
@@ -74,7 +73,8 @@ config =
     ttl : 30 * 60
     client : jtRedis.getClient 'vicanso'
     complete : (parser) ->
-      sessionParser = parser
+      config.sessionParser = ->
+        parser
 
 module.exports = config
 

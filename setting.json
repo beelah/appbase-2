@@ -1,8 +1,7 @@
 {
   "host" : "vicanso.com",
   "mongodb" : {
-    "dbName" : "xxx",
-    "uri" : "mongodb://USER:PWD@localhost:10020/DBNAME"
+    "uri" : "mongodb://user:pwd@localhost:10020/test"
   },
   "redis" : {
     "name" : "vicanso",

@@ -10,5 +10,9 @@ pageContentHandler =
     viewData =
       title : '手机页测试'
     cbf null, viewData
+  save : (req, res, cbf) ->
+    cbf null, {
+      msg : 'success'
+    }
 
 module.exports = pageContentHandler

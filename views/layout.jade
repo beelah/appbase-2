@@ -8,12 +8,12 @@ html(lang='zh-CN')
     meta(name='author',content='小墨鱼 vicanso 腻味 tree')
     title= title
     //- link(rel='icon', href='/blog/images/favicon.png', type='image/x-icon')
-    include ../statics/inline.js
+    include ../statics/javascripts/inline.js
     //CSS_FILES_CONTAINER
     //if lt IE 9
       script(src='/javascripts/utils/html5shiv.min.js', type='text/javascript')
     - fileImporter.importCss(['/stylesheets/global.styl', '/stylesheets/ui.styl']);
-    - fileImporter.importJs(['http://libs.baidu.com/jquery/2.0.3/jquery.min.js', '/javascripts/utils/underscore.js', '/javascripts/utils/async.js']);
+    - fileImporter.importJs(['/javascripts/jquery/jquery-2.0.3.js', '/javascripts/utils/underscore.js', '/javascripts/utils/async.js']);
   body
     block bodyContainer
   script.

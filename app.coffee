@@ -1,14 +1,15 @@
 program = require 'commander'
+do ->
+  program.version('0.0.1')
+  .option('-p, --port <n>', 'listen port', parseInt)
+  .option('--log <n>', 'the log file')
+  .parse process.argv
+
 JTCluster = require 'jtcluster'
 JTMonitor = require 'jtmonitor'
 statistics = require './helpers/statistics'
 logger = require('./helpers/logger') __filename
 slaveTotal = require('os').cpus().length - 1
-do ->
-  program.version('0.0.1')
-  .option('-p, --port <n>', 'listen port', parseInt)
-  .parse process.argv
-
 
 options = 
   # 检测的时间间隔
@@ -42,7 +43,7 @@ options =
     jtMonitor.start {
       checkInterval : 30 * 1000
       # node使用内存的预警线，单位MB
-      memoryLimits : [10, 13, 150]
+      memoryLimits : [80, 150, 300]
       # os load平均值（使用每5分钟的平均值，以单核为准，若多核会根据CPU核数自动调整数值）
       loadavgLimits : [0.6, 0.65, 1]
       # 空闲内存，单位MB,若为小数则表示系统总内存*该值

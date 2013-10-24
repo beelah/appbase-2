@@ -2,8 +2,8 @@ setting = require './setting'
 fs = require 'fs'
 path = require 'path'
 _ = require 'underscore'
-jtRedis = require 'jtredis'
-program = require 'commander'
+redis = require './helpers/redis'
+# jtRedis = require 'jtredis'
 statistics = require './helpers/statistics'
 logger = require('./helpers/logger') __filename
 
@@ -70,7 +70,7 @@ httpResponseTimeLogger = ->
 
 # 初始化redis
 if setting.redis
-  require('./helpers/redis') setting.redis
+  redis.init setting.redis
 
 # 初始化mongodb
 if setting.mongodb
@@ -102,7 +102,7 @@ config =
     key : 'vicanso'
     secret : 'jenny&tree'
     ttl : 30 * 60
-    client : jtRedis.getClient 'vicanso'
+    client : redis.getClient 'vicanso'
     complete : (parser) ->
       config.sessionParser = ->
         parser

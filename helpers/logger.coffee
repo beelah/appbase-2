@@ -1,16 +1,17 @@
 winston = require 'winston'
 _ = require 'underscore'
 path = require 'path'
+program = require 'commander'
+transports = []
+if process.env.NODE_ENV != 'production'
+  transports.push new winston.transports.Console
+if program.log
+  transports.push new winston.transports.File {
+    filename : program.log
+  }
 logger =  new winston.Logger {
-  transports : [
-    new winston.transports.Console
-    new winston.transports.File {
-      filename: path.join __dirname, '../', 'appbase.log'
-    }
-  ]
+  transports : transports
 }
-
-# 'log info debug warn error'
 
 appPath = path.join __dirname, '..'
 module.exports = (file) ->

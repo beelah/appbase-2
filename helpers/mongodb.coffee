@@ -27,7 +27,6 @@ mongodb =
       throw new Error 'must be call init function before use model'
       return 
     client.model modelName
-    # jtMongoose.model @dbName, modelName
 
 module.exports = mongodb  
 

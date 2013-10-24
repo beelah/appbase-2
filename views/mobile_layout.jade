@@ -9,13 +9,8 @@ html(lang='zh-CN')
     meta(name='author',content='小墨鱼 vicanso 腻味 tree')
     title= title
     //- link(rel='icon', href='/blog/images/favicon.png', type='image/x-icon')
-    script.
-        window.TIME_LINE={logs:{},startTimes:{},time:function(a){this.startTimes[a]=new Date().getTime();return this},timeEnd:function(a,c){var d,b;b=this.startTimes;d=b[a]||b[c];if(d){this.logs[a]=new Date().getTime()-d}return this},getLogs:function(){return this.logs}};
-        window.TIME_LINE.time('html');
-        (function(a,b,c){if(c in b&&b[c]){var d,e=a.location,f=/^(a|html)$/i;a.addEventListener("click",function(a){d=a.target;while(!f.test(d.nodeName))d=d.parentNode;"href"in d&&(d.href.indexOf("http")||~d.href.indexOf(e.host))&&(a.preventDefault(),e.href=d.href)},!1)}})(document,window.navigator,"standalone")
+    include ../statics/javascripts/inline.js
     //CSS_FILES_CONTAINER
-    //if lt IE 9
-      script(src='/javascripts/utils/html5shiv.min.js', type='text/javascript')
     - fileImporter.importCss(['/stylesheets/global.styl', '/stylesheets/ui.styl', '/stylesheets/mobile_ui.styl']);
     - fileImporter.importJs(['http://libs.baidu.com/jquery/2.0.3/jquery.min.js', '/javascripts/utils/underscore.js', '/javascripts/utils/async.js']);
   body

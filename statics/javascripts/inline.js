@@ -17,3 +17,8 @@ window.TIME_LINE = {
     return this.logs;
   }
 };
+window.TIME_LINE.time('html');
+window.onerror = function(msg, url , line){
+
+  return true;
+};

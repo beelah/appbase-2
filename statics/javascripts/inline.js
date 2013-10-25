@@ -20,5 +20,4 @@ window.TIME_LINE = {
 window.TIME_LINE.time('html');
 window.onerror = function(msg, url , line){
 
-  return true;
 };

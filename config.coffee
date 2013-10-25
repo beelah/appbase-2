@@ -63,6 +63,7 @@ httpResponseTimeLogger = ->
           params : req.url
           statusCode : res.statusCode || 200
           date : new Date
+          length : res._headers['content-length']
           elapsedTime : duration
         statistics.add result
       next()

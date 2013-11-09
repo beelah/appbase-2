@@ -14,7 +14,8 @@ getStaticConfig = ->
         staticHosts = setting.staticHosts
       else
         staticHosts = [setting.staticHosts]
-    staticMaxAge = 48 * 3600 * 1000
+    # 单位 秒
+    staticMaxAge = 48 * 3600 
     staticVersion = fs.readFileSync path.join __dirname, '/version'
     convertExts = 
       src : ['.coffee', '.styl']
@@ -89,6 +90,7 @@ config =
     else
       app.locals.LOCAL = {}
     logger.info "server is running..."
+    config.app = app
   firstMiddleware : httpResponseTimeLogger
   host : getHost()
   express : 

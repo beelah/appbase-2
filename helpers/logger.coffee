@@ -14,6 +14,12 @@ logger =  new winston.Logger {
 }
 
 appPath = path.join __dirname, '..'
+
+###*
+ * exports 用于返回一个looger对象，有info debug error warn方法，主要用于方便输出log时带上文件名
+ * @param  {[type]} file [description]
+ * @return {[type]}      [description]
+###
 module.exports = (file) ->
   file = file.replace appPath, ''
   log = (type, args) ->

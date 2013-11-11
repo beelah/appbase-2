@@ -10,6 +10,7 @@ JTMonitor = require 'jtmonitor'
 statistics = require './helpers/statistics'
 logger = require('./helpers/logger') __filename
 slaveTotal = require('os').cpus().length - 1
+mailer = require './helpers/mailer'
 
 options = 
   # 检测的时间间隔
@@ -38,6 +39,7 @@ options =
     jtMonitor = new JTMonitor
     jtMonitor.on 'log', (data) ->
       data.type = 'monitor'
+      data._jtPid = process._jtPid if process._jtPid
       data.pid = process.pid
       statistics.add data
     jtMonitor.start {
@@ -61,7 +63,10 @@ if process.env.NODE_ENV == 'production'
   jtCluster.on 'error', (err) ->
     logger.error err if err
   jtCluster.on 'log', (log) ->
-    logger.info log if log
+    if log
+      logger.info log
+      # if log.category == 'uncaughtException'
+      #   发送email
 else
   options.slaveHandler()
 

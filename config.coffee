@@ -2,10 +2,9 @@ setting = require './setting'
 fs = require 'fs'
 path = require 'path'
 _ = require 'underscore'
-redis = require './helpers/redis'
-# jtRedis = require 'jtredis'
 statistics = require './helpers/statistics'
 logger = require('./helpers/logger') __filename
+redis = require './helpers/redis'
 
 getStaticConfig = ->
   if isProductionMode
@@ -52,22 +51,22 @@ getHost = ->
 
 httpResponseTimeLogger = ->
   (req, res, next) ->
-      return next() if res.jt_responseTime
-      start = new Date
-      res.jt_responseTime = true
+    return next() if res.jt_responseTime
+    start = new Date
+    res.jt_responseTime = true
 
-      res.on 'header', ->
-        duration = new Date - start
-        result = 
-          type : 'http'
-          method : req.method
-          params : req.url
-          statusCode : res.statusCode || 200
-          date : new Date
-          length : res._headers['content-length']
-          elapsedTime : duration
-        statistics.add result
-      next()
+    res.on 'header', ->
+      duration = new Date - start
+      result = 
+        type : 'http'
+        method : req.method
+        params : req.url
+        statusCode : res.statusCode || 200
+        date : new Date
+        length : res._headers['content-length']
+        elapsedTime : duration
+      statistics.add result
+    next()
 
 
 # 初始化redis
@@ -84,13 +83,13 @@ isProductionMode = process.env.NODE_ENV == 'production'
 
 config = 
   init : (app) ->
+    app.locals.title = '大树工作室'
     if isProductionMode
       app.locals.LOCAL =
-        host : 's.jennyou.com'
+        staticHost : 's.jennyou.com'
     else
       app.locals.LOCAL = {}
     logger.info "server is running..."
-    config.app = app
   firstMiddleware : httpResponseTimeLogger
   host : getHost()
   express : 
@@ -99,6 +98,7 @@ config =
       'trust proxy' : true
       views : "#{__dirname}/views"
   static : getStaticConfig()
+  firstMiddleware : httpResponseTimeLogger
   route : ->
     require './routes'
   session : ->

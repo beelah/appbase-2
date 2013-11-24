@@ -54,9 +54,9 @@ httpResponseTimeLogger = ->
     return next() if res.jt_responseTime
     start = new Date
     res.jt_responseTime = true
-
-    res.on 'header', ->
+    logResponse = _.once ->
       duration = new Date - start
+      start = 0
       result = 
         type : 'http'
         method : req.method
@@ -66,6 +66,10 @@ httpResponseTimeLogger = ->
         length : res._headers['content-length']
         elapsedTime : duration
       statistics.add result
+      res.removeListener 'finish', logResponse
+      res.removeListener 'close', logResponse
+    res.on 'finish', logResponse
+    res.on 'close', logResponse
     next()
 
 
